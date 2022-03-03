@@ -1,5 +1,12 @@
 /********************************************************************
- This sample schedules a task to start and stop at dates you supply
+ This schedules a task to start and stop on the times/dates you provide.
+
+Must set:
+Line 60 - Task name
+Line 65 & 66 - exe path
+Line 278 - Start time of task
+Line 272 - End time of task
+
 ********************************************************************/
 #define _CRT_SECURE_NO_WARNINGS
 #define _WIN32_DCOM
@@ -52,9 +59,17 @@ int __cdecl wmain()
     //  Create a name for the task.
     LPCWSTR wszTaskName = L"Time Trigger Test Task";
 
-    //  Get the windows directory and set the path to notepad.exe.
+    //  Get the directory and set the path to your exe.
+
+    
     wstring wstrExecutablePath = _wgetenv(L"WINDIR");
     wstrExecutablePath += L"\\SYSTEM32\\NOTEPAD.EXE";
+
+    /*
+    EXAMPLE:
+    wstring wstrExecutablePath = _wgetenv(L"LOCALAPPDATA");
+    wstrExecutablePath += L"\\blah.exe";
+    */
 
 
     //  ------------------------------------------------------
@@ -260,7 +275,7 @@ int __cdecl wmain()
 
     //  Set the task to start at a certain time. The time 
     //  format should be YYYY-MM-DDTHH:MM:SS(+-)(timezone).
-    hr = pTimeTrigger->put_StartBoundary(_bstr_t(L"2022-03-03T14:23:00"));
+    hr = pTimeTrigger->put_StartBoundary(_bstr_t(L"2022-03-03T14:33:00"));
     pTimeTrigger->Release();
     if (FAILED(hr))
     {
