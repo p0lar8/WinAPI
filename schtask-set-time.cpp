@@ -241,7 +241,7 @@ int __cdecl wmain()
 
     //  Add the time trigger to the task.
     ITrigger* pTrigger = NULL;
-    hr = pTriggerCollection->Create(TASK_TRIGGER_TIME, &pTrigger);
+    hr = pTriggerCollection->Create(TASK_TRIGGER_DAILY, &pTrigger);
     pTriggerCollection->Release();
     if (FAILED(hr))
     {
@@ -252,31 +252,31 @@ int __cdecl wmain()
         return 1;
     }
 
-    ITimeTrigger* pTimeTrigger = NULL;
+    IDailyTrigger* pDailyTrigger = NULL;
     hr = pTrigger->QueryInterface(
-        IID_ITimeTrigger, (void**)&pTimeTrigger);
+        IID_IDailyTrigger, (void**)&pDailyTrigger);
     pTrigger->Release();
     if (FAILED(hr))
     {
-        printf("\nQueryInterface call failed for ITimeTrigger: %x", hr);
+        printf("\nQueryInterface call failed for IDailyTrigger: %x", hr);
         pRootFolder->Release();
         pTask->Release();
         CoUninitialize();
         return 1;
     }
 
-    hr = pTimeTrigger->put_Id(_bstr_t(L"Trigger1"));
+    hr = pDailyTrigger->put_Id(_bstr_t(L"Trigger1"));
     if (FAILED(hr))
         printf("\nCannot put trigger ID: %x", hr);
 
-    hr = pTimeTrigger->put_EndBoundary(_bstr_t(L"2022-05-02T08:00:00"));
+    hr = pDailyTrigger->put_EndBoundary(_bstr_t(L"2022-05-02T08:00:00"));
     if (FAILED(hr))
         printf("\nCannot put end boundary on trigger: %x", hr);
 
     //  Set the task to start at a certain time. The time 
     //  format should be YYYY-MM-DDTHH:MM:SS(+-)(timezone).
-    hr = pTimeTrigger->put_StartBoundary(_bstr_t(L"2022-03-03T14:33:00"));
-    pTimeTrigger->Release();
+    hr = pDailyTrigger->put_StartBoundary(_bstr_t(L"2022-03-03T16:23:00"));
+    pDailyTrigger->Release();
     if (FAILED(hr))
     {
         printf("\nCannot add start boundary to trigger: %x", hr);
