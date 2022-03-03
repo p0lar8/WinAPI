@@ -1,5 +1,5 @@
 /********************************************************************
- This schedules a task to start and stop on the times/dates you provide.
+ This schedules a daily scheduled task to start and stop on the times/dates you provide.
 
 Must set:
 Line 60 - Task name
