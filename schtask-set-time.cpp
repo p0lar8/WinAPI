@@ -4,8 +4,9 @@
 Must set:
 Line 60 - Task name
 Line 65 & 66 - exe path
-Line 278 - Start time of task
 Line 272 - End time of task
+Line 278 - Start time of task
+
 
 ********************************************************************/
 #define _CRT_SECURE_NO_WARNINGS
