@@ -10,7 +10,7 @@ int main() {
 
 	const string reg_path = "Software\\Microsoft\\Windows\\CurrentVersion\\Run";
 	const string key_name = "WinUpdate";
-	//Does this have to be the C drive?  Is there a way to make it more generic to fit all use cases instead of assuming windows is on c:\ ?
+	//change to %windir% in case windows isnt on C
 	const string path = "C:\\Windows\\System32\\notepad.exe";
 
 	HKEY default_key;
